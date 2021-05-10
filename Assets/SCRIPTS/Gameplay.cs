@@ -43,7 +43,7 @@ public class Gameplay : MonoBehaviour
             UnityEngine.Vector2 mouseCLickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             UnityEngine.Vector2 point = Vector2Int.RoundToInt(mouseCLickPoint);
 
-            ProcessClick(new Vector2(point.x,point.y));
+            if(point.y > -6)  ProcessClick(new Vector2(point.x,point.y));
         }
     }
 
@@ -66,10 +66,8 @@ public class Gameplay : MonoBehaviour
 
     public void RunSimulation()
     {
-        print(alive_cells.Count);
         cell_evaluation_methods.EvaluateNextGenCells(alive_cells, dead_cells);
         cell_evaluation_methods.AssignNextGenCells(alive_cells, dead_cells);
-        print(alive_cells.Count);
 
         ProcessLights();
     }
